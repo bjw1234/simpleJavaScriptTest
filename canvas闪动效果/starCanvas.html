@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body {
+			background: #222;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="720" height="360"></canvas>
+	<script type="text/javascript" src="./starCanvas.js"></script>
+	<script type="text/javascript">
+		new starCanvas({
+			canvas:document.getElementById('canvas'),
+			imgUrl:'./src/back.jpg',
+			/**可选参数*/
+			starNum: 50, // 星星的数量
+			speed: 0.5, // 星星的移动速度
+  			flickerFreq: 80, // 闪烁频率
+		});
+	</script>
+</body>
+</html>
