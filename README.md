@@ -29,6 +29,7 @@
 3.多添加几张图片也可以正常运行。
 
 `index3.html`
+
 我们封装了一个统一的轮播图插件插件，使用方式：
 
 ```js
@@ -47,7 +48,7 @@ new Carousel({
 
 ## canvas星星闪动效果
 
-通过`canvas`画布以及`requestAnimationFrame`方法不断刷新画布实现各种动画效果。
+通过`canvas`画布以及`requestAnimationFrame()`方法不断刷新画布实现各种动画效果。
 
 比较重要的一些小知识点：
 `save()`和`restore()`这两个方法经常一起使用，它可以使得一些操作仅作用于这两个方法之间，而不会影响其他内容。
@@ -58,14 +59,14 @@ ctx.globalAlpha = 0.7;
 
 // 绘制图片
 // 参数：从画布的(0,0)位置开始
-ctx.drawImage(xxImage,0,0,w,h);
+ctx.drawImage(image,0,0,w,h);
 
 // 绘制带填充的矩形
 ctx.fillStyle = '#393550';
 ctx.fillRect(0,0,w,h);
 
 // 实现帧动画
-.drawImage(xxImage,sx,sy,swidth,sheight,x,y,width,height);
+ctx.drawImage(image,sx,sy,swidth,sheight,x,y,width,height);
 //参数：(sx,sy)图片起点，(swidth,sheight)图片上的宽高, (x,y)是canvas上的起点，(width,height)是绘制在canvas上的宽高。
 
 ```
