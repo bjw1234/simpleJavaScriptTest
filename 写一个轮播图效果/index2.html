@@ -1,0 +1,200 @@
+<!-- 
+
+	思路：
+	    将所有的图片重叠定位在同一位置，
+	分别切换各个图片的透明度实现轮播效果
+	
+	优点：
+	    1.简单、无需考虑无限轮播。
+	    2.过渡动画可以在css中直接设置。
+		3.多添加几张图片也可以正常运行。
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图</title>
+	<style type="text/css">
+		body {
+			background: #ccc;
+		}
+		#container {
+			position: relative;
+			width: 600px;
+			height: 400px;
+			margin: 80px auto;
+			overflow: hidden;			
+		}
+		#list {
+			position: relative;
+			width: 600px;
+			height: 400px;
+		}
+		#list img {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 600px;
+			height: 400px;
+			opacity: 0;
+			transition: all .9s;
+		}
+		#buttons {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			text-align: center;
+		}
+
+		#buttons span {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			border:1px solid #fff;
+			border-radius: 50%;
+			margin:20px 10px;
+			cursor: pointer;			
+		}
+
+		#buttons span.on {
+			background: orange;
+		}
+
+		.arrow {
+			position: absolute;			
+			top: 0;
+			width: 200px;
+			height: 100%;			
+			color: rgba(255,255,255,.5);
+			text-decoration: none;
+			text-align: center;
+			line-height: 400px;
+			font-size: 40px;
+			opacity: 0;
+			transition: all .3s;
+		}
+
+		#prev {
+			left: 0;			 
+			background: linear-gradient(to right, rgba(0,0,0,.61),rgba(0,0,0,0));
+		}
+		#next {
+			right: 0;
+			background: linear-gradient(to left, rgba(0,0,0,.61),rgba(0,0,0,0));
+		}
+		#container:hover .arrow {
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="list">	
+			<img src="img/1.jpg" alt="1">
+			<img src="img/2.jpg" alt="2">
+			<img src="img/3.jpg" alt="3">
+			<img src="img/4.jpg" alt="4">
+			<img src="img/5.jpg" alt="5">			
+		</div>
+
+		<div id="buttons">
+			<span index="0" class="on"></span>
+			<span index="1"></span>
+			<span index="2"></span>
+			<span index="3"></span>
+			<span index="4"></span>
+		</div>
+
+		<a href="javascript:;" id="prev" class="arrow">&lt;</a>
+		<a href="javascript:;" id="next" class="arrow">&gt;</a>
+	</div>
+
+	<script type="text/javascript">
+		var container = document.getElementById('container');
+		var buttons = document.getElementById('buttons').getElementsByTagName('span');		
+		var images = list.getElementsByTagName('img');
+		var prev = document.getElementById('prev');
+		var next = document.getElementById('next');
+		var isAnimating = false; // 是否正在执行动画
+		var timer = null;
+		var index = 0;  // 当前图片下标
+
+		function animate(){
+			isAnimating = true;
+			// 将所有的图片的透明度设置为0
+			for (var i = images.length - 1; i >= 0; i--) {
+				var opacity = images[i].style.opacity;
+				// debugger;
+				if(opacity === '' || opacity === '1'){
+					images[i].style.opacity = '0';
+				}
+			}
+			// 设置当前图片
+			images[index].style.opacity = '1';
+
+			// 设置button高亮
+			for (var i = 0; i < buttons.length; i++) {
+				if(buttons[i].className === 'on'){
+					buttons[i].className = '';
+					break;
+				}
+			}
+			buttons[index].className = 'on';
+			isAnimating = false;
+		}
+
+		// 第一次调用
+		animate();
+
+		prev.addEventListener('click',function(){
+			index --;
+			if(index < 0){
+				index = images.length - 1;
+			}
+			if(!isAnimating)
+				animate();
+		});
+
+		next.addEventListener('click',function(){
+			index ++;			
+			if(index > images.length -1){
+				index = 0;
+			}
+			if(!isAnimating)
+				animate();
+		});
+
+		// 为buttons添加点击
+		for (var i = 0; i < buttons.length; i++) {
+			buttons[i].addEventListener('mouseover',function(){
+				index = this.getAttribute('index');
+				animate();
+			}); 
+		}
+
+		function play(){
+			timer = setInterval(function(){
+				index ++;			
+				if(index > images.length -1){
+					index = 0;
+				}
+				animate();
+			},2500);
+		}
+
+		function stop(){
+			if(timer)
+				clearInterval(timer);
+		}
+
+		// 暂停和开始
+		container.onmouseover = stop;
+		container.onmouseout = play;
+
+		play();
+
+	</script>
+</body>
+</html>

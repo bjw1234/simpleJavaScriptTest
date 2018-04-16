@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas星星闪动效果</title>
+</head>
+<body>
+	<canvas id="canvas" width="800" height="450"></canvas>
+	<script type="text/javascript">
+
+		// 定义全局变量
+		var canvas;
+		var ctx;
+		var canW;
+		var canH;
+		var girlImage;
+		var starImage;
+		var starArr = [];
+
+		// 动画间隔时间
+		var last = Date.now();
+		var delta = 0;
+
+		// 鼠标是否在canvas中
+		var enter = false;
+		var starAlpha = 0;
+		
+		function init(){
+			canvas = document.getElementById('canvas');
+			ctx = canvas.getContext('2d');
+			canW = canvas.width;
+			canH = canvas.height;
+			girlImage = new Image();
+			girlImage.src = './src/girl.jpg';
+			starImage = new Image();
+			starImage.src = './src/star.png';
+
+			// 添加星星对象
+			for(var i = 0;i < 60;i++){
+				starArr.push(new Star());
+			}
+
+			// 添加鼠标事件
+			document.addEventListener('mousemove',function(e){
+				var x = e.offsetX;
+				var y = e.offsetY;
+				// 在这张图片中
+				if(x > 100 && y > 75 && x < 700 && y < 375){
+					enter = true;
+				}else{
+					enter = false;
+				}
+			});
+		}
+
+		/**
+		 * [Star description]
+		 * 星星类
+		 */
+		function Star(){
+			this.x = Math.random()*600 + 100;
+			this.y = Math.random()*300 + 75;
+			this.picNo = Math.floor(Math.random()*7);	// 0~7 当前图片位置
+			this.timeOut = 0; // 时间间隔	
+			this.xSpeed = (Math.random() - 0.5)*.3;
+			this.ySpeed = (Math.random() - 0.5)*.3;		
+		}
+
+
+		/**
+		 *
+		 * save()和restore()这两个方法经常使用，
+		 * 它可以使得一些操作仅作用于两者之间，而不会影响其他内容。
+		 * 
+		 */
+		Star.prototype.drawSelf = function(){
+			ctx.save();
+			ctx.globalAlpha = starAlpha;
+			// drawImage方法可以实现序列帧动画
+			ctx.drawImage(starImage,this.picNo*7,0,7,7,this.x,this.y,7,7);
+			ctx.restore();
+		}
+
+		Star.prototype.update = function(){
+
+			// 累加时间
+			this.timeOut += delta;
+
+			// 对星星的位置更新
+			this.x += this.xSpeed * delta * 0.03;
+			this.y += this.ySpeed * delta * 0.03;
+
+			if(this.timeOut > 80){
+				this.picNo ++;
+				this.picNo %= 7;				
+				this.timeOut = 0;
+			}
+		}
+
+		// 更新星星的透明度
+		function updateStarAlpha(){
+			if(enter){
+				starAlpha += 0.03 * delta * 0.02;
+				if(starAlpha >= 1){
+					starAlpha = 1;
+				}
+			}else{
+				starAlpha -= 0.03 * delta * 0.02;
+				if(starAlpha <= 0){
+					starAlpha = 0;
+				}
+			}
+		}
+
+		// 绘制星星
+		function drawStars(){								
+			for(var i = 0;i < starArr.length; i++){
+
+				// 星星边界判断
+				var x = starArr[i].x;
+				var y = starArr[i].y;
+
+				// 超出边界
+				if(x < 100 || y < 75 || x > 700 || y > 375){
+					starArr.splice(i,1,new Star());
+				}
+
+				starArr[i].update();		
+				starArr[i].drawSelf();		
+			}
+		}
+
+		// 绘制背景
+		function drawBackground(){
+			ctx.fillStyle = '#393550';
+			ctx.fillRect(0,0,canW,canH);
+		}
+
+		// 绘制图片
+		function drawImage(){
+			ctx.drawImage(girlImage,100,75,600,300);		
+		}
+		
+		// 绘制循环
+		function drawLoop(){
+			// 计算帧频率
+			var now = Date.now();
+			delta = now - last;
+			last = now;		
+
+			drawBackground();
+			drawImage();
+			drawStars();	
+			updateStarAlpha();
+			requestAnimationFrame(drawLoop);
+		}
+
+		document.body.onload = function () {
+			// 初始化
+			init();
+			drawLoop();					
+		}
+	</script>
+</body>
+</html>

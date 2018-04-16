@@ -1,0 +1,221 @@
+<!-- 
+
+	思路：
+	    容器宽度为所有图片宽度的总和，图片
+	在容器中向左浮动，水平排列。
+	通过不断地改变容器的left值实现轮播效果。
+
+	难点：
+	    1.无限循环的实现。（借助辅助图，
+	当显示在辅助图上时，重新设置容器的left值，
+	使之显示同样的图片。）
+		2.动画的实现。（不能采用css过渡动画，采用js递归
+    不断改变容器left值，实现动画效果。）
+
+	缺点：
+		1.借助辅助图不利于动态渲染。
+		2.程序没有扩展性，多添加图片程序就挂掉了。
+		3.......
+
+ -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图</title>
+	<style type="text/css">
+		body {
+			background: #ccc;
+		}
+		#container {
+			position: relative;
+			width: 600px;
+			height: 400px;
+			margin: 80px auto;
+			overflow: hidden;			
+		}
+		#list {
+			position: relative;
+			width: 4200px;
+			height: 400px;
+		}
+		#list img {
+			float: left;
+			width: 600px;
+			height: 100%;
+		}
+		#buttons {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			text-align: center;
+		}
+
+		#buttons span {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			border:1px solid #fff;
+			border-radius: 50%;
+			margin:20px 10px;
+			cursor: pointer;			
+		}
+
+		#buttons span.on {
+			background: orange;
+		}
+
+		.arrow {
+			position: absolute;			
+			top: 0;
+			width: 200px;
+			height: 100%;			
+			color: rgba(255,255,255,.5);
+			text-decoration: none;
+			text-align: center;
+			line-height: 400px;
+			font-size: 40px;
+			opacity: 0;
+			transition: all .3s;
+		}
+
+		#prev {
+			left: 0;			 
+			background: linear-gradient(to right, rgba(0,0,0,.61),rgba(0,0,0,0));
+		}
+		#next {
+			right: 0;
+			background: linear-gradient(to left, rgba(0,0,0,.61),rgba(0,0,0,0));
+		}
+
+		#container:hover .arrow {
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="list" style="left:-600px;">
+			<img src="img/5.jpg" alt="5">  <!-- 辅助图 -->		
+			<img src="img/1.jpg" alt="1">
+			<img src="img/2.jpg" alt="2">
+			<img src="img/3.jpg" alt="3">
+			<img src="img/4.jpg" alt="4">
+			<img src="img/5.jpg" alt="5">
+			<img src="img/1.jpg" alt="1">	<!-- 辅助图 -->			
+		</div>
+
+		<div id="buttons">
+			<span index="1" class="on"></span>
+			<span index="2"></span>
+			<span index="3"></span>
+			<span index="4"></span>
+			<span index="5"></span>
+		</div>
+
+		<a href="javascript:;" id="prev" class="arrow">&lt;</a>
+		<a href="javascript:;" id="next" class="arrow">&gt;</a>
+	</div>
+
+	<script type="text/javascript">
+		var container = document.getElementById('container');
+		var buttons = document.getElementById('buttons').getElementsByTagName('span');
+		var list = document.getElementById('list');
+		var prev = document.getElementById('prev');
+		var next = document.getElementById('next');
+		var isAnimating = false; // 是否正在执行动画
+		var timer = null;
+
+		function animate(offset) {			
+
+			var newLeft = parseInt(list.style.left) + offset;
+			var dur = 300; // 总时长
+			var time = 10; // 时间间隔
+			var everyLen = offset / (dur/time);
+
+			// 偏移动画
+			!function _go() {
+				setTimeout(function() {					
+					if((offset < 0 && parseInt(list.style.left) > newLeft) || 
+					   (offset > 0 && parseInt(list.style.left) < newLeft)){
+
+						// 正在执行动画...
+						isAnimating = true;
+						list.style.left = parseInt(list.style.left) + everyLen + 'px';	
+						_go();		
+
+					}else{						
+						list.style.left = newLeft +'px';	
+
+						// 第一张辅助图
+						if(parseInt(list.style.left) > -600){
+							list.style.left = '-3000px';
+						}
+
+						// 最后一张辅助图
+						if(parseInt(list.style.left) < -3000){
+							list.style.left = '-600px';
+						}					
+
+						// 点亮对应的button
+						var index = parseInt(list.style.left) / -600;
+						for (var i = 0; i < buttons.length; i++) {
+							// debugger;
+							if(buttons[i].className === 'on'){
+								buttons[i].className = '';
+								break;
+							}
+						}
+						buttons[index-1].className = 'on';	
+						// 动画结束
+						isAnimating = false;		
+					}					
+				},time);
+			}();												
+		}
+
+		prev.addEventListener('click',function(){
+			if(!isAnimating){
+				animate(600);
+			}
+		});
+		next.addEventListener('click',function(){			
+			if(!isAnimating){
+				animate(-600);
+			}
+		});
+
+		// 为button添加点击事件
+		for (var i = 0; i < buttons.length; i++) {
+			buttons[i].onclick = function() {
+				var offset = (this.getAttribute('index') * -600) - parseInt(list.style.left);
+				animate(offset);
+			};
+		}
+
+		// 定时轮播
+		function play(){
+			timer = setInterval(function() {
+				if(!isAnimating)
+					animate(-600);
+			},2500);
+		}
+
+		// 停止轮播
+		function stop() {
+			if(timer)
+				clearInterval(timer);
+		}	
+
+		// 暂停和开始
+		container.onmouseover = stop;
+		container.onmouseout = play;
+
+		play();
+
+	</script>
+</body>
+</html>
