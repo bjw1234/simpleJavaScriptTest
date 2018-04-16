@@ -33,15 +33,15 @@
 
 ```js
 new Carousel({	 
-	   oWrapper: '', // 父容器
-		 timeOut: 2000, // 延时切换时间
-		 figureW: 600, // 轮播图宽度
-		 figureH: 400, // 轮播图高度
-		 figures: [ // 轮播图片集合
-			 '../img/xx.jpg',
-			 '../img/xx.jpg',
-			// ....
-		 ]		
+	oWrapper: '', // 父容器
+	timeOut: 2000, // 延时切换时间
+	figureW: 600, // 轮播图宽度
+	figureH: 400, // 轮播图高度
+	figures: [ // 轮播图片集合
+	 '../img/xx.jpg',
+	 '../img/xx.jpg',
+	// ....
+	]		
 });
 ```
 
