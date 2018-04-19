@@ -106,6 +106,79 @@ new starCanvas({
 });
 ```
 
+## 组件化dialog
+
+在这个组件中实用到了`Zepto`这个框架，其主要目的在于提供一些工具方法和处理移动端的某些问题。
+
+这个组件目前还不够完善，存在一些问题。
+组件使用方法：
+
+```js
+new Dialog({
+	width:'auto',
+	message:'好好学习，知道吗？',
+	type:'ok',
+	buttons:[
+		{
+			text:'确认',
+			type:'green',
+			callback:function(){
+
+			}					
+		},
+		{
+			text:'有点烦',
+			type:'red',
+			callback:function(){
+
+			}
+
+		}
+	],
+	// 弹出框延时关闭
+	delay:3000,
+	// 遮罩层透明度
+	maskOpacity:0.8
+});
+
+
+其中比较有趣的一点是使用了模板语法：
+		// 创建基本的DOM结构
+let htmlTempl = `<div class="g-dialog-container" ${this.config.maskOpacity?`
+		style="background-color:rgba(0,0,0,${this.config.maskOpacity})";`:''}>
+	 <div class="dialog-window" ${this.config.width === 'auto'?'':`style="width:${this.config.width}px"`}>
+		<div class="dialog-header ${this.config.type}"></div>
+		${this.config.message?`<div class="dialog-content">${this.config.message}</div>`:''}
+		${this.config.buttons?`<div class="dialog-footer"></div>`:''}
+	</div>
+</div>`;
+
+在${}中可以添加任意的表达式或函数调用，但是if条件语句不是表达式，所以没法使用，只能使用三目运算符来达到目的。
+
+甚至你也可以使用这样的方式去遍历一个数组，插入数据。
+${this.config.buttons.map(item => `
+	<button class="dialog-btn ${item.type}">${item.text}</button>
+`).join('')}		
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
