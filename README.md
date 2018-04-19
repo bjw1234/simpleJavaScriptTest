@@ -91,7 +91,20 @@ function drawLoop(){
 }
 ```
 
+`starCanvas.js`
 
+将这个效果封装成一个简单的插件来使用：
+
+```js
+new starCanvas({
+	canvas:document.getElementById('canvas'),
+	imgUrl:'./src/back.jpg',
+	/**可选参数*/
+	starNum: 50, // 星星的数量
+	speed: 0.5, // 星星的移动速度
+	flickerFreq: 80, // 闪烁频率
+});
+```
 
 
 
