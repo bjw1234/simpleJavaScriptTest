@@ -162,6 +162,53 @@ ${this.config.buttons.map(item => `
 
 ```
 
+## js实现打字机效果
+
+思路：
+* 通过一个定时器不断地取出字符串中的下一个字，然后将其添加到div区域，直到字符串的最有一个字停止。
+* 在这个过程中我们怎样始终保持最新添加的内容位于可见区域呢？
+那就是将这个区域的滚动条滚到最后：
+```js
+div.scrllTop = div.scrollHeight;
+```
+* 怎样实现光标的闪动呢？
+```css
+/*css3 animation动画*/
+@keyframes blink {
+    from, to {
+	color: transparent;
+    }
+    50% {
+	color: #fff;
+    }
+}
+
+.content .cursor {
+    animation: blink 1s step-end infinite;
+}
+```
+
+
+核心代码：
+```js
+// 通过这个函数实现打字机效果
+print(){
+  var  = 0;
+  var result = '';
+  var timer = setInterval(function(){
+    // 在所有字符串中截取出一个字来
+    var _char = str.substr(counter,1);
+    // 将这个字添加到一个div区域
+    content.innerHTML = _char;
+    if(counter < str.length){
+      // 取下一个字
+      counter ++;            
+    }else{
+      clearInterval(timer);
+    }
+  },40);
+}
+```
 
 
 
