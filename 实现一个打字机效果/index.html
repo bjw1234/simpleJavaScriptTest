@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.6, maximum-scale=0.6, minimum-scale=0.6">
+    <title>Document</title>
+
+    <style type="text/css">
+        @keyframes blink {
+            from, to {
+                color: transparent;
+            }
+            50% {
+                color: #fff;
+            }
+        }
+
+        .content .cursor {
+            animation: blink 1s step-end infinite;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            overflow: auto;
+        }
+
+        .left {
+            flex: 1.5 0 0;
+            overflow: auto;
+            color: #fff;
+            border-right: 2px dashed #fff;
+            background: #333;
+        }
+
+        .right {
+            position: relative;
+            flex: 2;
+            background: #eee;
+        }
+
+        .btn-start {
+            display: block;
+            font-size: 16px;
+            border: none;
+            margin: 15px auto 0;
+            padding: 8px 20px;
+            outline: none;
+            background-color: blue;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-start:hover {
+            background-color: #6868f1;
+        }
+
+        .pro-address {
+            position: absolute;
+            bottom: 100px;
+            left: 20px;
+        }
+
+        .pro-address h2 {
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+</head>
+<body>
+<!-- 左侧 -->
+<div class="left">
+    <div class="print-container">
+        <span class="content"></span>
+        <br><br><br><br><br><br>
+        <br><br><br><br><br><br>
+    </div>
+
+</div>
+
+<!-- 右侧 -->
+<div class="right">
+    <button class="btn-start">点击这里开始</button>
+    <!--MOUSE-->
+    <div id="mouse">
+        <div id="mouse_head"></div>
+
+        <div id="mouse_ear_left" class="mouse_ear"></div>
+        <div id="mouse_ear_right" class="mouse_ear"></div>
+
+        <div id="mouse_eye_left_outer" class="mouse_eye_outer"></div>
+        <div id="mouse_eye_right_outer" class="mouse_eye_outer"></div>
+        <div id="mouse_eye_left_inner" class="mouse_eye_inner"></div>
+        <div id="mouse_eye_right_inner" class="mouse_eye_inner"></div>
+
+        <div id="mouse_nose"></div>
+
+        <div id="mouse_whisker_left_1" class="mouse_whisker"></div>
+        <div id="mouse_whisker_left_2" class="mouse_whisker"></div>
+        <div id="mouse_whisker_left_3" class="mouse_whisker"></div>
+        <div id="mouse_whisker_right_1" class="mouse_whisker"></div>
+        <div id="mouse_whisker_right_2" class="mouse_whisker"></div>
+        <div id="mouse_whisker_right_3" class="mouse_whisker"></div>
+
+        <div id="mouse_tooth_left" class="mouse_tooth"></div>
+        <div id="mouse_tooth_right" class="mouse_tooth"></div>
+
+    </div>
+
+    <!--项目地址-->
+    <div class="pro-address">
+        <h2>项目地址：</h2>
+        <a href="https://github.com/bjw1234/simpleJavaScriptTest" title="">simpleJavaScriptTest</a>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    var str =
+        `
+		/**
+		 * 
+		 * 今天有点无聊，干点什么呢？  -_-||
+		 * ...
+		 * ...
+		 * ...
+		 *
+		 *
+		 * // 那就用CSS画只老鼠吧...
+		 * // 闲话少说，开始咯！
+		 *
+		 *
+		 *
+		 * time: 2018/4/21		 
+		 * address: 哥滴宿舍		 
+		 * author: 佐佐木		
+		 * 
+		 */
+
+
+		/**		
+		* 定义老鼠的位置
+		*/
+		#mouse{
+			position: absolute;
+			top: 200px;
+			left: 50%;
+			transform:translateX(-50%);
+			-webkit-transform:translateX(-50%);
+		}
+
+		/**
+		 * 老鼠的头部
+		 */
+		#mouse_head {
+		  width: 200px;
+		  height: 200px;
+		  background-color: #8F9595;
+		  border-radius: 100px;
+		}
+
+		/**
+		 * 然后是老鼠的两只耳朵
+		 */
+		.mouse_ear {
+			display: inline-block;
+			position: relative;
+			top: -230px;
+			border: 12px solid #6E6E6E;
+			width: 73px;
+			height: 73px;
+			background: #E5A95F;
+			border-radius: 50%;
+		}
+		
+		/*左耳在这里*/
+		#mouse_ear_left {						
+			left: -25px;		
+		}
+
+		/*右耳在这里*/
+		#mouse_ear_right {				
+			left: 25px;
+		}
+
+		/**
+		 * 老鼠的眼白
+		 */
+		.mouse_eye_outer {
+			width: 40px;
+			height: 40px;
+			position: absolute;
+			top: 55px;
+			background: white;
+			-webkit-border-radius: 50px;
+			border-radius: 50px;
+		}
+
+		/*左边眼睛-眼白位置*/
+		#mouse_eye_left_outer {
+			left: 50px;
+		}
+
+		/*右边眼睛-眼白位置*/
+		#mouse_eye_right_outer {
+			left: 110px;
+		}
+
+		/**
+		 * 老鼠的眼珠子
+		 */
+		.mouse_eye_inner {
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			top: 75px;			
+			background: black;
+			-webkit-border-radius: 50px;
+			border-radius: 50px;
+		}
+
+		/*左边眼睛-眼珠子位置*/
+		#mouse_eye_left_inner {
+			left: 63px;
+		}
+
+		/*右边眼睛-眼珠子*/
+		#mouse_eye_right_inner {
+			left: 122px;
+		}
+
+		/**
+		 * 当然还有老鼠的鼻子
+		 */
+		#mouse_nose {
+			width: 0;
+			height: 0;
+			position: absolute;
+			top: 110px;
+			left: 75px;
+			border-left: 25px solid transparent;
+			border-right: 25px solid transparent;
+			border-top: 50px solid #6E6E6E;
+			z-index: 1;
+		}
+
+		/**
+		 * 老鼠的三个胡须...
+		 */
+		.mouse_whisker {
+			width: 80px;
+			height: 1.5px;
+			border-radius: 2px;
+			background-color: black;
+			position: absolute;
+		}
+		
+		/*左边-第一根位置*/
+		#mouse_whisker_left_1 {
+			top: 115px;
+			left: 25px;
+			-webkit-transform: rotate(10deg);
+		}
+
+		/*左边-第二根位置*/
+		#mouse_whisker_left_2 {
+			top: 118px;
+			left: 28px;
+		}
+
+		/*左边-第三根位置*/
+		#mouse_whisker_left_3 {
+			top: 120px;
+			left: 25px;
+			-webkit-transform: rotate(-10deg);
+		}
+		/**
+		 * 老鼠右边三个胡须
+		 */
+		
+		/*右边-第一根位置*/
+		#mouse_whisker_right_1 {
+			top: 115px;
+			left: 90px;
+			-webkit-transform: rotate(-10deg);
+		}
+		
+		/*右边-第二根位置*/
+		#mouse_whisker_right_2 {
+			top: 118px;
+			left: 90px;
+		}
+
+		/*右边-第三根位置*/
+		#mouse_whisker_right_3 {
+			top: 121px;
+			left: 92px;
+			-webkit-transform: rotate(10deg);
+		}
+
+		/**
+		 * 老鼠的两颗牙齿
+		 */
+		.mouse_tooth {
+			width: 15px;
+			height: 22px;
+			background-color: white;
+			position: absolute;
+			top: 170px;
+		}
+		
+		/*左边牙齿*/
+		#mouse_tooth_left {
+			left: 84px;
+			-webkit-transform: rotate(10deg);
+		}
+	
+		/*右边牙齿*/
+		#mouse_tooth_right {
+			left: 102px;
+			-webkit-transform: rotate(-10deg);
+		}
+
+		/**
+		 * 到现在我们的小老鼠就大功告成啦!
+		 * .
+		 * .
+		 * . 
+		 * .
+		 * 有对这个效果感兴趣的同学
+		 * 可以点击右下查看哟...
+		 *
+		 */
+       `;
+    var start = document.querySelector('.btn-start');
+    var left = document.querySelector('.left');
+    var content = document.querySelector('.content');
+    var cursor = "<span class = 'cursor'>|</span>";
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = '';
+    document.getElementsByTagName('head')[0].appendChild(style);
+
+    // 按钮
+    start.onclick = function () {
+        print();
+    }
+
+    function print() {
+        var counter = 0;
+        var result = '';
+        var timer = setInterval(function () {
+            var _char = str.substr(counter, 1);
+            style.innerHTML += _char;
+            _char === '\n' ? result += '<br>' : '';
+            _char === '\t' ? result += '&nbsp;' : '';
+            _char === ' ' ? result += '&nbsp;' : '';
+            result += _char;
+
+            // 给左侧添加代码
+            content.innerHTML = result + cursor;
+
+            // 将滚动条滚动到最底部
+            left.scrollTop = left.scrollHeight;
+
+            if (counter < str.length) {
+                counter++;
+            } else {
+                clearInterval(timer);
+            }
+        }, 10);
+    }
+</script>
+</body>
+</html>
+
