@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tab选项卡</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		body {
+			background-color: #323232;
+			font-size: 12px;
+			font-family: "微软雅黑";
+			padding: 150px;
+		}
+		ul,li {
+			list-style: none;			
+		}
+		a {
+			text-decoration: none;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="tab.css">
+</head>
+<body>
+	<div class="tab js-tab">
+		<ul class="tab-nav">
+			<li class="actived"><a href="#">新闻</a></li>
+			<li><a href="#">娱乐</a></li>
+			<li><a href="#">电影</a></li>
+			<li><a href="#">科技</a></li>
+		</ul>
+
+		<div class="content-wrap">
+			<div class="content-item current">
+				<img src="./img/1.jpg">
+			</div>
+			<div class="content-item">
+				<img src="./img/2.jpg">
+			</div>
+			<div class="content-item">
+				<img src="./img/3.jpg">
+			</div>
+			<div class="content-item">
+				<img src="./img/4.jpg">
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="./jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="./tab.js"></script>
+	<script type="text/javascript">
+		var tab = new Tab($('.js-tab'),{
+			// 参数
+		});
+	</script>
+</body>
+</html>
