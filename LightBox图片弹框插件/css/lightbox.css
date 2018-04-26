@@ -1,0 +1,116 @@
+/*遮罩层*/
+#g-lightbox-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.5;
+    z-index: 10000;
+    display: none;
+}
+
+/*弹出框*/
+#g-lightbox-popup {
+    position: fixed;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    z-index: 10001;
+    user-select: none;
+    background: url("../icon/loading.gif") #ffffff center center no-repeat;
+    display: none;
+}
+
+#g-lightbox-popup .lightbox-pic-view {
+    position: relative;
+    border: 5px solid #ffffff;
+    border-radius: 3px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+#g-lightbox-popup .lightbox-pic-view .lightbox-btn {
+    position: absolute;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#g-lightbox-popup .lightbox-pic-view .lightbox-btn-prev {
+    left: 0;
+}
+
+#g-lightbox-popup .lightbox-pic-view .lightbox-btn-prev:hover {
+    background: url("../icon/prev.png") center center no-repeat;
+}
+
+#g-lightbox-popup .lightbox-pic-view .lightbox-btn-next {
+    right: 0;
+}
+
+#g-lightbox-popup .lightbox-pic-view .lightbox-btn-next:hover {
+    background: url("../icon/next.png") center center no-repeat;
+}
+
+#g-lightbox-popup .lightbox-pic-view .lightbox-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#g-lightbox-popup .lightbox-pic-caption {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    border: 5px solid #ffffff;
+    box-sizing: border-box;
+    border-top: none;
+    user-select: none;
+    display: none;
+}
+
+.lightbox-caption-area {
+    padding: 5px 0 5px 5px;
+    color: #cccccc;
+}
+
+.lightbox-pic-title {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 20px;
+    padding-right: 30px;
+}
+
+.lightbox-of-index {
+    padding-right: 30px;
+}
+
+.lightbox-close-btn {
+    position: absolute;
+    right: 0;
+    padding-right: 10px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    width: 17px;
+    height: 17px;
+    background: url("../icon/close.png") left top no-repeat;
+    background-size: 17px 17px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
