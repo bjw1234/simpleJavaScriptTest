@@ -211,11 +211,50 @@ print(){
 ```
 
 
+## LightBox弹出框插件
 
+使用方式：
 
+```html
 
+<img src="./images/1-1.jpg" <!-- 图片缩略图地址 -->
+     width="100px" <!-- 图片缩略图大小 -->
+     data-role="lightbox" <!-- 启用LightBox组件 -->
+     data-id="fdafasafaasfad" <!-- 图片的唯一标识符 -->
+     data-group="group-1" <!-- 图片的分组名称 -->
+     data-source="./images/1-1.jpg" <!-- 原始大图的地址 -->
+     data-caption="图片描述xxx1"> <!-- 图片的描述信息 -->
+```
 
+通过以下方式引入插件：
 
+```js
+    var LightBox = new LightBox({
+        animateSpeed: 500,
+	// ...
+    });
+```
+
+图片预加载方式：
+
+```js
+function prevLoadPicture (src, callback) {
+    let image = new Image();
+    image.src = src;
+    if (!!window.ActiveXObject) { // IE
+	image.onreadystatechange = function () {
+	    if (image.readyState === 'complete') {
+		callback(image.width, image.height);
+	    }
+	}
+    } else { // 非IE
+	image.onload = function () {
+	    console.log("预加载：", image.width, image.height);
+	    callback(image.width, image.height);
+	}
+    }
+},
+```
 
 
 
