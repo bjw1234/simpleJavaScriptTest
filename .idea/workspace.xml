@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="14030697-599f-4f04-bc62-2b8466f8c405" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LightBox图片弹框插件/css/lightbox.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LightBox图片弹框插件/css/reset.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LightBox图片弹框插件/index.html" afterPath="$PROJECT_DIR$/LightBox图片弹框插件/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LightBox图片弹框插件/js/main.js" afterPath="$PROJECT_DIR$/LightBox图片弹框插件/js/main.js" />
-    </list>
+    <list default="true" id="14030697-599f-4f04-bc62-2b8466f8c405" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -33,8 +27,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LightBox图片弹框插件/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="1" column="40" lean-forward="true" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
+            <state relative-caret-position="432">
+              <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
               <folding>
                 <marker date="1524734636127" expanded="false" signature="7190:8006" ph="{...}" />
                 <marker date="1524734636127" expanded="true" signature="7267:7510" ph="..." />
@@ -119,7 +113,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="width" value="1032" />
     <option name="height" value="1030" />
@@ -206,15 +200,15 @@
       <option name="presentableId" value="Default" />
       <updated>1524309132928</updated>
       <workItem from="1524309135088" duration="5709000" />
-      <workItem from="1524642276165" duration="36815000" />
+      <workItem from="1524642276165" duration="36892000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42524000" />
+    <option name="totallyTimeSpent" value="42601000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15535524" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -290,8 +284,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LightBox图片弹框插件/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="1" column="40" lean-forward="true" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
+        <state relative-caret-position="432">
+          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
           <folding>
             <marker date="1524734636127" expanded="false" signature="7190:8006" ph="{...}" />
             <marker date="1524734636127" expanded="true" signature="7267:7510" ph="..." />
