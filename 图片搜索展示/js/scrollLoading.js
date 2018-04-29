@@ -1,7 +1,7 @@
 /**
  * <img class="scrollLoading"
  * data-url="https://images.unsplash.com/photo-1494376863055-e18dd6c6841a?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE5ODgzfQ&amp;s=281537d7dc78f51012baf1b276428a48"
- * width="385" height="256" src="src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==""
+ * width="385" height="256" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
  * alt="fire" style="background:url(./images/loading.gif) #e7e9eb no-repeat center;">
  *
  * $('.scrollLoading').scrollLoading();
