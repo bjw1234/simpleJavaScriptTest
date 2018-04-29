@@ -103,6 +103,9 @@
     cursor: pointer;
 }
 
+.disabled {
+    display: none;
+}
 
 
 
