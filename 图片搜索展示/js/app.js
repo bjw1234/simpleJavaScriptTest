@@ -4,9 +4,10 @@ $(function () {
     let searchKeyword = $('#search-keyword');
     let responseContainer = $('#response-container');
 
-    let keyWord = ''; // 用户输入的关键字
+    let keyWord = ''; // 用户输入的关键字(默认)
     let isLoading = false; // 是否正在加载
     let page = 1; // 页码标识符
+
     searchForm.on('submit', function () {
         keyWord = searchKeyword.val().trim();
         searchKeyword.val('');
@@ -15,14 +16,13 @@ $(function () {
         requestData(page, keyWord);
     });
 
+    // 默认触发(填充数据)
+    searchForm.trigger('submit');
+
     // 加载lightBox
     new LightBox({
         animateSpeed: 500
     });
-
-    // 给页面添加默认图片
-    keyWord = 'happiness';
-    requestData(page, keyWord);
 
     /**
      * 发起ajax请求
@@ -30,6 +30,7 @@ $(function () {
      * @param searchedForText 关键字
      */
     function requestData(page, searchedForText) {
+        console.log(page, searchedForText);
         isLoading = true;
         $.ajax({
             type: 'GET',
